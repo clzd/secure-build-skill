@@ -2,10 +2,10 @@
 
 secure-build is a Claude Code skill that loads automatically when Claude writes or reviews code that handles user input, fetches URLs, calls external services, stores credentials, or needs to survive failures. It gives Claude a 15-item checklist covering security (TLS, input validation, XSS, CSRF, CORS, SSRF, hashing, authentication, authorization, brute force) and reliability (timeouts, retry, circuit breaker, error handling, race conditions). Every item has a plain-language rule plus a BAD and GOOD Node.js example in the reference files.
 
-Install by running this from your project's root folder (replace the path with where you cloned this repo):
+Install by running this from your project's root folder:
 
 ```sh
-mkdir -p .claude/skills && cp -R /path/to/secure-build-skill/skills/secure-build .claude/skills/
+mkdir -p .claude/skills && curl -sL https://github.com/clzd/secure-build-skill/archive/main.tar.gz | tar -xz -C .claude/skills --strip-components=2 secure-build-skill-main/skills/secure-build
 ```
 
 ## Hooks
@@ -14,5 +14,5 @@ mkdir -p .claude/skills && cp -R /path/to/secure-build-skill/skills/secure-build
 
 Install from your project's root folder:
 
-1. Copy the script: `mkdir -p .claude/hooks && cp /path/to/secure-build-skill/hooks/block-secrets.sh .claude/hooks/`
-2. Paste the `"hooks"` block from `hooks/settings.snippet.json` into `.claude/settings.json` (merge it if that file already has a `"hooks"` block).
+1. Download the script: `mkdir -p .claude/hooks && curl -sL https://github.com/clzd/secure-build-skill/archive/main.tar.gz | tar -xz -C .claude/hooks --strip-components=2 secure-build-skill-main/hooks/block-secrets.sh`
+2. Paste the `"hooks"` block from [`hooks/settings.snippet.json`](hooks/settings.snippet.json) into `.claude/settings.json` (merge it if that file already has a `"hooks"` block).
